@@ -34,7 +34,7 @@ class Card extends Component {
         } = contents;
 
         return (
-            <View style={{flex: 1}}>
+            <View style={styles.flex}>
                 <CardTop
                     userPicture={user.picture}
                     userName={user.name}
@@ -73,19 +73,11 @@ class Card extends Component {
         return (
             <Image
                 source={this.props.data.card.image}
-                style={{
-                    flex: 1,
-                    width: Dimensions.get('window').width - 20,
-                    marginTop: 20,
-                    marginHorizontal: 10,
-                    marginBottom: 10,
-                    borderRadius: 10,
-                    overflow: 'hidden',
-                }}
+                style={styles.cardBackgroundImage}
             >
                 <LinearGradient
                     colors={['rgba(0,0,0,0.8)', 'rgba(1,1,1,0.0)']}
-                    style={{flex: 1}}
+                    style={styles.flex}
                 >
                     {this.renderCardContents(this.props.data)}
                 </LinearGradient>
@@ -95,6 +87,18 @@ class Card extends Component {
 }
 
 const styles = StyleSheet.create({
+    flex:{
+        flex:1
+    },
+    cardBackgroundImage:{
+        flex: 1,
+        width: Dimensions.get('window').width - 20,
+        marginTop: 20,
+        marginHorizontal: 10,
+        marginBottom: 10,
+        borderRadius: 10,
+        overflow: 'hidden',
+    },
     updateText: {
         fontSize: 32,
         color: 'white',
