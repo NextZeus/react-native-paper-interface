@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient'
-let AnimatedListView = Animated.createAnimatedComponent(ListView)
+let AnimatedListView = Animated.createAnimatedComponent(ListView);
 
 let Card = require('./feed/Card');
 let cards = require('./feed/mocks');
@@ -62,15 +62,18 @@ class App extends Component {
 
             this.setState({
               isDocked: !this.state.isDocked,
-              dockAnimation: !this.state.isDocked ? this.state.pan.y.interpolate({
-                inputRange: [-panDiff, 0],
-                outputRange: [0, 1],
-                extrapolate: 'clamp'
-              }) : this.state.pan.y.interpolate({
-                inputRange: [0, panDiff],
-                outputRange: [0, 1],
-                extrapolate: 'clamp'
-              })
+              dockAnimation: !this.state.isDocked
+                  ?
+                  this.state.pan.y.interpolate({
+                    inputRange: [-panDiff, 0],
+                    outputRange: [0, 1],
+                    extrapolate: 'clamp'
+                  })
+                  : this.state.pan.y.interpolate({
+                    inputRange: [0, panDiff],
+                    outputRange: [0, 1],
+                    extrapolate: 'clamp'
+                  })
             }); 
           })         
         }
@@ -82,8 +85,6 @@ class App extends Component {
     return [
       styles.container,
       {
-        // borderWidth: 1,
-        // borderColor: 'red',
         width: this.state.dockAnimation.interpolate({
           inputRange: [0, 1],
           outputRange: [Dimensions.get('window').width, Dimensions.get('window').width * 2],
